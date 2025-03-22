@@ -59,7 +59,7 @@ export const login = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            // secure:true
+            // secure:true (use in production mode https)
             maxAge: age,
         }).status(200).json({ message: "Login Successfully" })
     } catch (err) {
@@ -68,5 +68,5 @@ export const login = async (req, res) => {
     }
 };
 export const logout = (req, res) => {
-    //db operations
+    res.clearCookie("token").status(200).json({ message: "Logout Successful" })
 };
